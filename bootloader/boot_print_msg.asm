@@ -9,6 +9,7 @@
    call BIOS_PRINT_FUNC ;calling BIOS_PRINT FUNC
  
 INFINITE_LOOP: ;Executes at the end
+   ;call BIOS_PRINT_FUNC  ****UNCOMMENT FOR FUN**** //Prints garbage 
    jmp INFINITE_LOOP
  
 MSG:
@@ -18,14 +19,14 @@ BIOS_PRINT_FUNC:
    lodsb                ;Loads bytes from SI register // getting MSG BYTE
    or al, al            ;zero=end of str
    jz DONE              ;jump to DONE, get out of the function (break)
-   mov ah, 0x0E
+   mov ah, 0x0E         ;int =10/ ah =0 x0e -> BIOS tele - type output
    mov bh, 0
    int 0x10             ;Display interrupt
    jmp BIOS_PRINT_FUNC  ;LOOP
 
 DONE:
-   ret
+   ret                  ;Finish the co-routine branch and go back to the main
  
-   times 510-($-$$) db 0
-   db 0x55
-   db 0xAA
+   times 510-($-$$) db 0      ; Padding the magic number with 0's
+   db 0x55                    ; Magic
+   db 0xAA                    ; Number
