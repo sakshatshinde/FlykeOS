@@ -1,6 +1,8 @@
 MSG:
-   db 'Welcome to Flyke OS', 0   ;db = data byte
-
+   db 'Welcome to Flyke OS', 10, 13, 0   ;db = data byte 
+   ;10, 13 are CPU instructions. Look at the ASCII table for values of 10,13 -> LS, CR
+   ;One means newline, kinda like '\n' and the other is to go at the beginning of the line.
+   
 BIOS_PRINT_FUNC:
    lodsb                ;Loads bytes from SI register // getting MSG BYTE
    or al, al            ;zero=end of str
