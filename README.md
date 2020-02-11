@@ -1,1 +1,2 @@
-FlykeOS
+# FlykeOS
+#### Writing a super basic operating system from scratch :)
